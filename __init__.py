@@ -5,7 +5,7 @@ import sys
 import os
 import socket
 import threading
-from fcgi import *
+from webconftests.fcgi import *
 import http.client
 import time
 
