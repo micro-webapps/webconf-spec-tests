@@ -2,8 +2,8 @@ dump_error() {
     echo "$1"
     echo "Host: $host"
     echo "URL:  $url"
-    echo 'Output of `curl --resolve localhost2:127.0.0.1 -k -L -H "Host: $host" "$url"`:'
-    curl --resolve localhost2:127.0.0.1 -k -L -v "$url"
+    echo 'Output of `curl --resolve $host:$port:127.0.0.1 -k -L -H "Host: $host" "$url"`:'
+    curl --resolve $host:$port:127.0.0.1 -k -L -v "$url"
     echo "Output of server:"
     cat haproxy.output
 }
@@ -13,7 +13,7 @@ handled_by_8080() {
     url=$2
     port=`echo $url |cut -d: -f3|cut -d/ -f 1`
 
-    curl --resolve localhost2:127.0.0.1 -L "$url" 2>/dev/null|grep "8080" >/dev/null
+    curl --resolve $host:$port:127.0.0.1 -L "$url" 2>/dev/null|grep "8080" >/dev/null
     if [ $? != 0 ]; then
         dump_error "URL is not handled by 8080 backend, but it should be:"
         exit 1
@@ -25,7 +25,7 @@ handled_by_8080_ssl() {
     url=$2
     port=`echo $url |cut -d: -f3|cut -d/ -f 1`
 
-    curl --resolve localhost2:127.0.0.1 -k -L "$url" -v 2>&1|grep "8080" -B100|grep "SSL connection using" >/dev/null
+    curl --resolve $host:$port:127.0.0.1 -k -L "$url" -v 2>&1|grep "8080" -B100|grep "SSL connection using" >/dev/null
     if [ $? != 0 ]; then
         dump_error "URL is not handled by 8080 backend using SSL, but it should be:"
         exit 1
@@ -37,7 +37,7 @@ not_handled_by_8080() {
     url=$2
     port=`echo $url |cut -d: -f3|cut -d/ -f 1`
 
-    curl --resolve localhost2:127.0.0.1 -k -L "$url" 2>/dev/null|grep "8080" >/dev/null
+    curl --resolve $host:$port:127.0.0.1 -k -L "$url" 2>/dev/null|grep "8080" >/dev/null
     if [ $? == 0 ]; then
         dump_error "URL is handled by 8080 backend, but it should not be:"
         exit 1
@@ -49,7 +49,7 @@ handled_by_8081() {
     url=$2
     port=`echo $url |cut -d: -f3|cut -d/ -f 1`
 
-    curl --resolve localhost2:127.0.0.1 -k -L "$url" 2>/dev/null|grep "8081" >/dev/null
+    curl --resolve $host:$port:127.0.0.1 -k -L "$url" 2>/dev/null|grep "8081" >/dev/null
     if [ $? != 0 ]; then
         dump_error "URL is not handled by 8081 backend, but it should be:"
         exit 1
@@ -61,7 +61,7 @@ handled_by_8081_ssl() {
     url=$2
     port=`echo $url |cut -d: -f3|cut -d/ -f 1`
 
-    curl --resolve localhost2:127.0.0.1 -k -L "$url" -v 2>&1|grep "8081" -B100|grep "SSL connection using" >/dev/null
+    curl --resolve $host:$port:127.0.0.1 -k -L "$url" -v 2>&1|grep "8081" -B100|grep "SSL connection using" >/dev/null
     if [ $? != 0 ]; then
         dump_error "URL is not handled by 8081 backend using SSL, but it should be:"
         exit 1
@@ -73,7 +73,7 @@ not_handled_by_8081() {
     url=$2
     port=`echo $url |cut -d: -f3|cut -d/ -f 1`
 
-    curl --resolve localhost2:127.0.0.1 -k -L "$url" 2>/dev/null|grep "8081" >/dev/null
+    curl --resolve $host:$port:127.0.0.1 -k -L "$url" 2>/dev/null|grep "8081" >/dev/null
     if [ $? == 0 ]; then
         dump_error "URL is handled by 8081 backend, but it should not be:"
         exit 1
