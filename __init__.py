@@ -132,4 +132,7 @@ def runtests(impl):
     for d in tests:
         if os.path.isdir(d) and len(d) == 3:
             if runtest(impl, d) != 0:
+                impl.stop()
                 sys.exit(1)
+
+    impl.stop()
