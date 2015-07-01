@@ -105,6 +105,9 @@ def test_do_requests(impl, d):
     return ret
 
 def runtest(impl, d):
+    if impl.skip_test(d):
+        print(bcolors.OKGREEN + "*** " + d + ": SKIPPED" + bcolors.ENDC)
+        return 0
     print(bcolors.OKGREEN + "*** " + d + ": STARTING" + bcolors.ENDC)
     ret = 0
 
