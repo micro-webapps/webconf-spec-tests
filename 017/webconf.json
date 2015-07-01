@@ -4,6 +4,6 @@
     "virtualhost": "localhost",
     "proxy_alias": "/owncloud",
     "proxy_backend_alias": "/owncloud",
-    "certificate": "./004/localhost.crt",
-    "certificate_key": "./004/localhost.key"
+    "certificate": "./017/localhost.crt",
+    "certificate_key": "./017/localhost.key"
 }
