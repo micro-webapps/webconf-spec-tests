@@ -39,7 +39,25 @@ Content-Length: {0}
             response = "Status: 200 OK\n" + response
             send_fcgi_response(self.request, data, bytes(response, "UTF-8"))
         else:
-            response = "HTTP/1.1 200 OK\n" + response
+            headers = {}
+            for header in data.decode("utf-8").split("\r\n"):
+                if header.find(":") == -1:
+                    continue
+
+                key = header.split(":")[0]
+                value = ":".join(header.split(":")[1:])
+                headers[key] = value[1:]
+
+            if "TestLocation" in headers:
+                response =  "HTTP/1.1 301 Moved Permanently\n"
+                response += "Location: {0}\n".format(headers["TestLocation"])
+                response += """Content-Type: application/xhtml; charset=utf-8
+Content-Length: {0}
+
+{1}
+""".format(len("Moved"), "Moved")
+            else:
+                response = "HTTP/1.1 200 OK\n" + response
             self.request.sendall(bytes(response, "UTF-8"))
 
 class ThreadedTCPServer(SocketServer.ThreadingMixIn, SocketServer.TCPServer):

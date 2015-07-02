@@ -8,6 +8,20 @@ dump_error() {
     cat haproxy.output
 }
 
+check_redirect_location() {
+    host=$1
+    url=$2
+    location=$3
+    expected=$4
+    port=`echo $url |cut -d: -f3|cut -d/ -f 1`
+
+    l=`curl --resolve $host:$port:127.0.0.1 -H "TestLocation: $location" -k "$url" -v 2>&1| grep "< Location"| awk '{print $3}'|tr -d '\n'|tr -d '\r'`
+    if [ "$l" != "$expected" ] && [ "$l" != "http://$host:$port$expected" ]; then
+        dump_error "Returned location $l is not equal $expected or http://$host:$port$expected"
+        exit 1
+    fi
+}
+
 handled_by_8080() {
     host=$1
     url=$2
