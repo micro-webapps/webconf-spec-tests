@@ -1,0 +1,19 @@
+{
+    "virtualhost": "localhost",
+    "directories": {
+        "./my-static-dir/test": {
+            "match": {
+                "\\.(php|txt)$": {
+                    "allow": "none"
+                }
+            }
+        }
+    },
+    "locations": {
+        "/static": {
+            "alias": "./my-static-dir"
+        }
+    }
+}
+
+

@@ -1,0 +1,10 @@
+{
+    "virtualhost": "localhost",
+    "certificate": "./018/localhost.crt",
+    "certificate_key": "./018/localhost.key",
+    "locations": {
+        "/static": {
+            "alias": "./my-static-dir"
+        }
+    }
+}
