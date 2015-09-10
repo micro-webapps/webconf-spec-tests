@@ -16,7 +16,7 @@
                         "hostname": "localhost",
                         "port": "8080",
                         "backend_alias": "/usr/share/wordpress/$1"
-                    }
+                    },
                     "allow": "all"
                 },
                 "\\.php$": {
