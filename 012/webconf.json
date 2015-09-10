@@ -11,17 +11,21 @@
         "/blog": {
             "match": {
                 "\\.txt$": {
-                    "proxy_protocol": "fcgi://",
-                    "proxy_hostname": "localhost",
-                    "proxy_port": "8080",
-                    "proxy_backend_alias": "/usr/share/wordpress/$1",
+                    "proxy": {
+                        "protocol": "fcgi://",
+                        "hostname": "localhost",
+                        "port": "8080",
+                        "backend_alias": "/usr/share/wordpress/$1"
+                    }
                     "allow": "all"
                 },
                 "\\.php$": {
-                    "proxy_protocol": "fcgi://",
-                    "proxy_hostname": "localhost",
-                    "proxy_port": "8081",
-                    "proxy_backend_alias": "/usr/share/wordpress/$1",
+                    "proxy": {
+                        "protocol": "fcgi://",
+                        "hostname": "localhost",
+                        "port": "8081",
+                        "backend_alias": "/usr/share/wordpress/$1"
+                    }
                     "allow": "all"
                 }
             }
