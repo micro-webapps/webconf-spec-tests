@@ -1,4 +1,5 @@
 {
+    "version": "dev",
     "virtualhost": "localhost",
     "proxy_hostname": "localhost",
     "proxy_port": "8080"

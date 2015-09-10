@@ -1,4 +1,5 @@
 {
+    "version": "dev",
     "virtualhost": "localhost",
     "directories": {
         "./my-static-dir/test": {

@@ -1,11 +1,14 @@
 {
+    "version": "dev",
     "id": "webapp-owncloud",
-    "proxy_protocol": "http://",
     "virtualhost": "localhost",
-    "proxy_alias": "/blog",
-    "proxy_backend_alias": "/",
     "certificate": "./011/localhost.crt",
     "certificate_key": "./011/localhost.key",
+    "proxy": {
+        "protocol": "http://",
+        "alias": "/blog",
+        "backend_alias": "/"
+    },
     "redirects": {
         "/": {
             "to": "https://localhost:9443"

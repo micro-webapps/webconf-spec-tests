@@ -1,4 +1,5 @@
 {
+    "version": "dev",
     "virtualhost": "localhost",
     "certificate": "./004/localhost.crt",
     "certificate_key": "./004/localhost.key",

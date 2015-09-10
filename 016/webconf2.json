@@ -1,7 +1,10 @@
 {
+    "version": "dev",
     "id": "webapp-owncloud2",
-    "proxy_protocol": "http://",
     "virtualhost": "localhost",
-    "proxy_alias": "/owncloud2",
-    "proxy_backend_alias": "/"
+    "proxy": {
+        "protocol": "http://",
+        "alias": "/owncloud2",
+        "backend_alias": "/"
+    }
 }

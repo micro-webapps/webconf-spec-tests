@@ -1,9 +1,12 @@
 {
+    "version": "dev",
     "id": "webapp-owncloud",
-    "proxy_protocol": "http://",
     "virtualhost": "localhost",
-    "proxy_alias": "/blog",
-    "proxy_backend_alias": "/",
     "certificate": "./010/localhost.crt",
-    "certificate_key": "./010/localhost.key"
+    "certificate_key": "./010/localhost.key",
+    "proxy": {
+        "protocol": "http://",
+        "alias": "/blog",
+        "backend_alias": "/"
+    }
 }
