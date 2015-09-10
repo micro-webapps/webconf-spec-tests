@@ -25,7 +25,7 @@
                         "hostname": "localhost",
                         "port": "8081",
                         "backend_alias": "/usr/share/wordpress/$1"
-                    }
+                    },
                     "allow": "all"
                 }
             }
