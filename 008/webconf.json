@@ -11,10 +11,12 @@
         "/blog": {
             "match": {
                 "\\.php$": {
-                    "proxy_protocol": "fcgi://",
-                    "proxy_hostname": "127.0.0.1",
-                    "proxy_port": "8080",
-                    "proxy_backend_alias": "/usr/share/wordpress/$1",
+                    "proxy": {
+                        "protocol": "fcgi://",
+                        "hostname": "127.0.0.1",
+                        "port": "8080",
+                        "backend_alias": "/usr/share/wordpress/$1"
+                    },
                     "allow": "all"
                 }
             }
