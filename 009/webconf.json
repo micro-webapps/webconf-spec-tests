@@ -3,8 +3,7 @@
     "id": "webapp-owncloud",
     "virtualhost": "localhost",
     "proxy": {
-        "protocol": "http://",
-        "alias": "/blog",
-        "backend_alias": "/"
+        "url": "http://domain.tld/",
+        "alias": "/blog"
     }
 }

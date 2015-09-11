@@ -5,9 +5,8 @@
     "certificate": "./011/localhost.crt",
     "certificate_key": "./011/localhost.key",
     "proxy": {
-        "protocol": "http://",
-        "alias": "/blog",
-        "backend_alias": "/"
+        "url": "http://domain.tld/",
+        "alias": "/blog"
     },
     "redirects": {
         "/": {

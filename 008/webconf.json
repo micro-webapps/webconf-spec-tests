@@ -1,12 +1,6 @@
 {
     "version": "dev",
     "virtualhost": "localhost",
-    "directories": {
-        "./my-static-dir": {
-            "alias": "/blog",
-            "index": "index.php"
-        }
-    },
     "locations": {
         "/blog": {
             "match": {
@@ -19,7 +13,9 @@
                     },
                     "allow": "all"
                 }
-            }
+            },
+            "index": "index.php",
+            "alias": "./my-static-dir"
         }
     }
 }

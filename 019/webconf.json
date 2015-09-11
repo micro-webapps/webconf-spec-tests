@@ -1,18 +1,16 @@
 {
     "version": "dev",
     "virtualhost": "localhost",
-    "directories": {
-        "./my-static-dir/test": {
+    "locations": {
+        "/static": {
+            "alias": "./my-static-dir"
+        },
+        "/static/test": {
             "match": {
                 "\\.(php|txt)$": {
                     "allow": "none"
                 }
             }
-        }
-    },
-    "locations": {
-        "/static": {
-            "alias": "./my-static-dir"
         }
     }
 }

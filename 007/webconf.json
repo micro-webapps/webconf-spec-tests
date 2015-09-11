@@ -2,10 +2,7 @@
     "version": "dev",
     "virtualhost": "localhost",
     "proxy": {
-        "protocol": "http://",
-        "hostname": "localhost",
-        "port": 8080,
-        "alias": "/",
-        "backend_alias": "/"
+        "url": "http://domain.tld:8080/",
+        "alias": "/"
     }
 }

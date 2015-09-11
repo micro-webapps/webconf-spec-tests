@@ -5,8 +5,7 @@
     "certificate": "./017/localhost.crt",
     "certificate_key": "./017/localhost.key",
     "proxy": {
-        "protocol": "http://",
-        "alias": "/owncloud",
-        "backend_alias": "/owncloud"
+        "url": "http://localhost/owncloud",
+        "alias": "/owncloud"
     }
 }

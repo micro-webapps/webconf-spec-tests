@@ -3,8 +3,7 @@
     "id": "webapp-owncloud",
     "virtualhost": "localhost",
     "proxy": {
-        "protocol": "http://",
-        "alias": "/owncloud",
-        "backend_alias": "/owncloud"
+        "url": "http://localhost/owncloud",
+        "alias": "/owncloud"
     }
 }

@@ -8,9 +8,9 @@
             "to": "https://localhost:9443/"
         }
     },
-    "directories": {
-        "./my-static-dir": {
-            "alias": "/static"
+    "locations": {
+        "/static": {
+            "alias": "./my-static-dir"
         }
     }
 }

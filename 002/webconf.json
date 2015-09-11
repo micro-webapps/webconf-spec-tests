@@ -2,9 +2,9 @@
     "version": "dev",
     "virtualhost": "localhost",
     "index": "index.html",
-    "directories": {
-        "./my-static-dir": {
-            "alias": "/static"
+    "locations": {
+        "/static": {
+            "alias": "./my-static-dir"
         }
     }
 }

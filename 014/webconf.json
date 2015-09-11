@@ -1,19 +1,12 @@
 {
     "version": "dev",
     "virtualhost": "localhost",
-    "directories": {
-        "./my-static-dir": {
-            "alias": "/blog",
-            "index": "index.php"
-        }
-    },
     "locations": {
         "/blog": {
+            "alias": "./my-static-dir",
+            "index": "index.php",
             "proxy": {
-                "protocol": "fcgi://",
-                "hostname": "localhost",
-                "port": 8081,
-                "backend_alias": "/usr/share/wordpress/$1"
+                "url": "fcgi://localhost:8081/usr/share/wordpress/$1"
             }
         }
     }
