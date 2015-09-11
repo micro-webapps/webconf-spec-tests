@@ -2,7 +2,7 @@
     "version": "dev",
     "virtualhost": "localhost",
     "proxy": {
-        "url": "http://domain.tld:8080/",
+        "url": "http://localhost:8080/",
         "alias": "/"
     }
 }
