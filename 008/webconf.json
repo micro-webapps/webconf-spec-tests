@@ -6,10 +6,7 @@
             "match": {
                 "\\.php$": {
                     "proxy": {
-                        "protocol": "fcgi://",
-                        "hostname": "127.0.0.1",
-                        "port": "8080",
-                        "backend_alias": "/usr/share/wordpress/$1"
+                        "url": "fcgi://127.0.0.1:8080/usr/share/wordpress/$1"
                     },
                     "allow": "all"
                 }
