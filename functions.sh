@@ -22,6 +22,14 @@ check_redirect_location() {
     fi
 }
 
+get_cookie() {
+    host=$1
+    url=$2
+    port=`echo $url |cut -d: -f3|cut -d/ -f 1`
+
+    curl --resolve $host:$port:127.0.0.1 -k "$url" -v 2>&1| grep "< Set-Cookie"| awk '{print $3}'|tr -d '\n'|tr -d '\r'
+}
+
 handled_by_8080_or_8081_in_ratio() {
     host=$1
     url=$2
@@ -57,9 +65,10 @@ handled_by_8080_or_8081_in_ratio() {
 handled_by_8080() {
     host=$1
     url=$2
+    cookie=$3
     port=`echo $url |cut -d: -f3|cut -d/ -f 1`
 
-    curl --resolve $host:$port:127.0.0.1 -L "$url" 2>/dev/null|grep "8080" >/dev/null
+    curl --resolve $host:$port:127.0.0.1 -L --cookie "$cookie" "$url" 2>/dev/null|grep "8080" >/dev/null
     if [ $? != 0 ]; then
         dump_error "URL is not handled by 8080 backend, but it should be:"
         exit 1
@@ -93,9 +102,10 @@ not_handled_by_8080() {
 handled_by_8081() {
     host=$1
     url=$2
+    cookie=$3
     port=`echo $url |cut -d: -f3|cut -d/ -f 1`
 
-    curl --resolve $host:$port:127.0.0.1 -k -L "$url" 2>/dev/null|grep "8081" >/dev/null
+    curl --resolve $host:$port:127.0.0.1 -k -L --cookie "$cookie" "$url" 2>/dev/null|grep "8081" >/dev/null
     if [ $? != 0 ]; then
         dump_error "URL is not handled by 8081 backend, but it should be:"
         exit 1
