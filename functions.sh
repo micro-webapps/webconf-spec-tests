@@ -22,6 +22,38 @@ check_redirect_location() {
     fi
 }
 
+handled_by_8080_or_8081_in_ratio() {
+    host=$1
+    url=$2
+    ratio1=$3
+    ratio2=$4
+    reqs=$(( ratio1 + ratio2 ))
+    port=`echo $url |cut -d: -f3|cut -d/ -f 1`
+    ratio_8080=0
+    ratio_8081=0
+
+    echo "$reqs"
+    for (( c=0; c<$reqs; c++ ))
+    do
+        curl --resolve $host:$port:127.0.0.1 -L "$url" 2>/dev/null > test.out
+        cat test.out|grep 8080
+        if [ $? == 0 ]; then
+            ratio_8080=$((ratio_8080 + 1))
+        fi
+
+        cat test.out|grep 8081
+        if [ $? == 0 ]; then
+            ratio_8081=$((ratio_8081 + 1))
+        fi
+    done
+
+    rm -f test.out
+    if [ $ratio1 -ne $ratio_8080 ] || [ $ratio2 -ne $ratio_8081 ]; then
+        dump_error "Ratio of backends used for requests is $ratio_8080:$ratio_8081, but it should be $ratio1:$ratio2"
+        exit 1
+    fi
+}
+
 handled_by_8080() {
     host=$1
     url=$2
