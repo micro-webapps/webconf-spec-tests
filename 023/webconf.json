@@ -1,0 +1,52 @@
+{
+    "version": "dev",
+    "virtualhost": "localhost",
+    "locations": {
+        "/blog": {
+            "alias": "./my-static-dir",
+            "index": "index.php",
+            "match": {
+                "\\.txt$": {
+                    "proxy": {
+                        "url": "balancer://my-balancer/usr/share/wordpress/$1"
+                    },
+                    "allow": "all"
+                },
+                "\\.php$": {
+                    "proxy": {
+                        "url": "balancer://my-balancer2/usr/share/wordpress/$1"
+                    },
+                    "allow": "all"
+                }
+            }
+        }
+    },
+    "balancers": {
+        "my-balancer": {
+            "method": "round-robin",
+            "members": [
+                {
+                    "url": "http://localhost:8080",
+                    "weight": 1
+                },
+                {
+                    "url": "http://localhost:8081",
+                    "weight": 4
+                }
+            ]
+        },
+        "my-balancer2": {
+            "method": "round-robin",
+            "members": [
+                {
+                    "url": "http://localhost:8080",
+                    "weight": 4
+                },
+                {
+                    "url": "http://localhost:8081",
+                    "weight": 1
+                }
+            ]
+        }
+    }
+}
