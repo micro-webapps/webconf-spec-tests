@@ -1,0 +1,22 @@
+{
+    "version": "dev",
+    "virtualhost": "localhost",
+    "balancers": {
+        "my-balancer": {
+            "members": [
+                {
+                    "url": "http://localhost:8081",
+                    "weight": 4
+                }
+            ]
+        },
+        "my-balancer2": {
+            "members": [
+                {
+                    "url": "http://localhost:8081",
+                    "weight": 1
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "version": "dev",
+    "virtualhost": "localhost",
+    "locations": {
+        "/blog": {
+            "proxy": {
+                "url": "balancer://my-balancer/usr/share/wordpress/$1"
+            }
+        },
+        "/foo": {
+            "proxy": {
+                "url": "balancer://my-balancer2/usr/share/wordpress/$1"
+            }
+        }
+    },
+    "balancers": {
+        "my-balancer": {
+            "method": "round-robin",
+            "members": [ ]
+        },
+        "my-balancer2": {
+            "method": "round-robin",
+            "members": [ ]
+        }
+    }
+}
