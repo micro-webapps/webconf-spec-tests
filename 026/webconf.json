@@ -8,6 +8,7 @@
         }
     },
     "error_pages": {
-        "400": "./my-static-dir/400.html"
+        "400": "./my-static-dir/400.html",
+        "501": "./my-static-dir/400.html"
     }
 }
