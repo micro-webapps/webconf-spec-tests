@@ -31,10 +31,14 @@ get_cookie() {
 }
 
 returns_bad_request() {
-    echo -e "test" | nc 127.0.0.1 9090 | grep "badrequest" > /dev/null 2>&1
+    host=$1
+    url=$2
+    port=`echo $url |cut -d: -f3|cut -d/ -f 1`
+    curl --resolve $host:$port:127.0.0.1 -k "$url" -v 2>&1| grep "< Set-Cookie"| awk '{print $3}'|tr -d '\n'|tr -d '\r'
+#     echo -e "test" | nc 127.0.0.1 9090 | grep "badrequest" > /dev/null 2>&1
     if [ $? != 0 ]; then
         dump_error "badrequest is not returned, but it should be:"
-        echo -e "test" | nc 127.0.0.1 9090
+#         echo -e "test" | nc 127.0.0.1 9090
         exit 1
     fi
 }

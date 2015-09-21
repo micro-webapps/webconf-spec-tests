@@ -9,6 +9,7 @@
     },
     "error_pages": {
         "400": "/static/400.html",
-        "501": "/static/400.html"
+        "501": "/static/400.html",
+        "404": "/static/400.html"
     }
 }
