@@ -1,0 +1,13 @@
+{
+    "version": "dev",
+    "virtualhost": "localhost",
+    "index": "index.html",
+    "locations": {
+        "/static": {
+            "alias": "./my-static-dir"
+        }
+    },
+    "error_pages": {
+        "400": "./my-static-dir/400.html"
+    }
+}

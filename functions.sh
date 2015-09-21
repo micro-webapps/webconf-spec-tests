@@ -30,6 +30,14 @@ get_cookie() {
     curl --resolve $host:$port:127.0.0.1 -k "$url" -v 2>&1| grep "< Set-Cookie"| awk '{print $3}'|tr -d '\n'|tr -d '\r'
 }
 
+returns_bad_request() {
+    echo -e "test" | nc 127.0.0.1 9090 | grep "badrequest" > /dev/null 2>&1
+    if [ $? != 0 ]; then
+        dump_error "badrequest is not returned, but it should be:"
+        exit 1
+    fi
+}
+
 handled_by_8080_or_8081_in_ratio() {
     host=$1
     url=$2
