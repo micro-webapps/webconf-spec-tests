@@ -88,6 +88,10 @@ def cleanup(d):
     ret = os.system("rm -rf ./" + d + "/certs")
     ret = os.system("rm -rf ./" + d + "/haproxy.output")
 
+    if d == "027":
+        os.system("rm -rf ./" + d + "/*.crt")
+        os.system("rm -rf ./" + d + "/*.key")
+
 def test_generate_cfg(impl, d):
     ret = impl.generate_cfg(d)
     if ret != 0:
