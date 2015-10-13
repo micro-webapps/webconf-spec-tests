@@ -10,7 +10,7 @@
             "ProxyPassReverse /owncloud/ http://localhost/owncloud/"
         ],
         "nginx >= 1.6.0": [
-            "   location /owncloud/ {",
+            "location /owncloud/ {",
             "   proxy_set_header HOST $host;",
             "   proxy_set_header X-Forwarded-Proto $scheme;",
             "   proxy_set_header X-Real-IP $remote_addr;",
@@ -18,7 +18,7 @@
             "   proxy_pass http://localhost:8080/owncloud/;",
             "   proxy_set_header Host $host;",
             "   proxy_redirect default;",
-            "   proxy_redirect http://localhost/owncloud/   /owncloud/;"
+            "   proxy_redirect http://localhost/owncloud/   /owncloud/;",
             "}"
         ]
     }
