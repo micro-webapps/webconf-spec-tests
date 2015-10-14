@@ -20,6 +20,16 @@
             "   proxy_redirect default;",
             "   proxy_redirect http://localhost/owncloud/   /owncloud/;",
             "}"
+        ],
+        "haproxy_backend >= 0.1": [
+            "acl backend_host_debug_1 req.hdr(Host) localhost:9090",
+            "acl backend_path_debug_2 path_reg ^/owncloud$|^/owncloud/",
+            "use_backend backend_debug_3 if backend_host_debug_1 backend_path_debug_2"
+        ],
+        "haproxy_frontend >= 0.1": [
+            "reqirep  ^([^\\ :]*)\\ /owncloud/(.*)     \\1\\ /owncloud/\\2",
+            "rspirep ^(Location:)\\ http://([^/]*)/owncloud/(.*)$    \\1\\ /owncloud/\\3",
+            "server debug_4 localhost:8080"
         ]
     }
 }
